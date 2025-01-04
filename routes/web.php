@@ -101,3 +101,5 @@ Route::post('/send-message', function (Request $request) {
         'message' => $botResponse
     ]);
 });
+
+Route::post('/help/submit', [HelpController::class, 'submit'])->name('help.submit');

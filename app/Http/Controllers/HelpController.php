@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HelpRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HelpController extends Controller
 {
@@ -29,4 +31,24 @@ class HelpController extends Controller
             'feedback' => $feedback,
         ]);
     }
+
+    public function submit(Request $request)
+    {
+        // Validasi data input
+        $validatedData = $request->validate([
+            'reason' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+    
+        // Simpan data ke database
+        DB::table('help_requests')->insert([
+            'reason' => $validatedData['reason'],
+            'description' => $validatedData['description'],
+            'created_at' => now(),
+        ]);
+    
+        // Set flash message
+        return redirect()->back()->with('success', 'Thank you! Your request has been submitted.');
+    }
+    
 }
