@@ -7,19 +7,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
+        'username', 
+        'email', 
+        'phone_number', 
+        'birth_date', 
         'password',
+        'mbti_type'
     ];
 
     /**
@@ -31,7 +36,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
     /**
      * The attributes that should be cast.
      *
@@ -41,4 +49,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function receivedChats()
+    {
+        return $this->hasMany(Chat::class, 'partner_id');
+    }
 }

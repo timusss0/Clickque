@@ -28,27 +28,12 @@
                 <label for="password" class="block text-gray-600 mb-2">Password</label>
                 <input type="password" id="password" name="password" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
             </div>
-            <div class="text-right">
-                <a href="#" class="text-sm text-purple-500 hover:underline">Forgot password?</a>
-            </div>
+            {{-- <div class="text-right">
+                <a href="{{ route('forgot-password') }}" class="text-sm text-purple-500 hover:underline">Forgot password?</a>
+            </div> --}}
             <button type="submit" class="w-full bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600">Sign In</button>
         </form>
-        <div class="flex items-center my-6">
-            <hr class="flex-grow border-gray-300">
-            <span class="mx-2 text-sm text-gray-500">OR</span>
-            <hr class="flex-grow border-gray-300">
-        </div>
-        <div class="flex justify-center space-x-4">
-            <button class="bg-gray-100 p-3 rounded-lg hover:bg-gray-200">
-                <img src="https://via.placeholder.com/24" alt="Google">
-            </button>
-            <button class="bg-gray-100 p-3 rounded-lg hover:bg-gray-200">
-                <img src="https://via.placeholder.com/24" alt="Apple">
-            </button>
-            <button class="bg-gray-100 p-3 rounded-lg hover:bg-gray-200">
-                <img src="https://via.placeholder.com/24" alt="Facebook">
-            </button>
-        </div>
+
         <p class="text-center text-sm text-gray-500 mt-6">
             Don't have an account? <a href="{{ route('signup') }}" class="text-purple-500 hover:underline">Sign Up</a>
         </p>
